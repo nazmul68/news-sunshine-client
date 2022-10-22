@@ -30,9 +30,9 @@ const Header = () => {
             </Nav>
 
             <Nav>
-              <Nav.Link href="#deets">More deets</Nav.Link>
+              <Nav.Link href="#deets">sample 1</Nav.Link>
               <Nav.Link eventKey={2} href="#memes">
-                Dank memes
+                sample 2
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
