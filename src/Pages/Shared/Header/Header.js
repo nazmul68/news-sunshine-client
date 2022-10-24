@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import LeftSideNav from "../LeftSideNav/LeftSideNav";
 import Button from "react-bootstrap/Button";
@@ -32,38 +32,28 @@ const Header = () => {
       >
         <Container fluid>
           <Navbar.Brand className="text-primary fw-bold me-md-5  px-1 rounded-2 shadow-sm cursor-pointer btn border-0">
-            <Link to="/" className="text-decoration-none">
+            <Nav.Link to="/" className="text-decoration-none">
               <button className="btn btn-primary fw-bold ">News</button>{" "}
               Sunshine
-            </Link>
+            </Nav.Link>
           </Navbar.Brand>
           {/* only for small device nav start */}
           <Nav className="d-md-none">
             <div>
-              <Nav.Link className="text-danger fw-semibold" eventKey={2}>
-                {user?.uid ? (
-                  <span>{user?.displayName}</span>
-                ) : (
-                  <div>
-                    <Link className="me-2 text-decoration-none " to="/login">
-                      Login
-                    </Link>
-                    <Link
-                      className="ms-sm-1 text-decoration-none"
-                      to="/register"
-                    >
-                      Register
-                    </Link>
-                  </div>
+              <Nav>
+                {user?.uid ? undefined : (
+                  <NavLink className="me-2 text-decoration-none " to="/login">
+                    Login
+                  </NavLink>
                 )}
-              </Nav.Link>
+              </Nav>
             </div>
           </Nav>
           <Nav className="d-md-none">
             <div>
               {user?.uid ? (
                 <Image
-                  style={{ height: "40px" }}
+                  style={{ height: "30px" }}
                   roundedCircle
                   src={user.photoURL}
                 ></Image>
@@ -76,50 +66,55 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">All News</Nav.Link>
-              <div className=" d-lg-none">
+              <NavLink to="/" className="text-decoration-none fw-semibold">
+                All News
+              </NavLink>
+              <div className="d-lg-none">
                 <LeftSideNav></LeftSideNav>
               </div>
-              <Nav.Link>Pricing</Nav.Link>
             </Nav>
             <Nav>
               {user?.uid ? (
-                <Button onClick={handleLogOut} variant="dark" className="me-2">
-                  <Link className="text-decoration-none fw-semibold text-light">
-                    Log Out
-                  </Link>
+                <Button
+                  onClick={handleLogOut}
+                  variant="outline-dark"
+                  className="me-2"
+                >
+                  <NavLink className="text-decoration-none fw-semibold">
+                    Log out
+                  </NavLink>
                 </Button>
               ) : undefined}
             </Nav>
             <Nav className="d-flex align-items-center">
-              <Nav.Link
-                className="text-danger fw-bold d-none d-md-block "
-                eventKey={2}
-              >
+              <Nav className="text-danger fw-bold d-none d-md-block ">
                 {user?.uid ? (
                   <>
-                    <span>{user?.displayName}</span>
+                    <span className="mx-2">{user?.displayName}</span>
                   </>
                 ) : (
-                  <div>
-                    <Link className="px-lg-3 text-decoration-none " to="/login">
+                  <div className="d-flex">
+                    <NavLink
+                      className="px-lg-3 text-decoration-none "
+                      to="/login"
+                    >
                       Login
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                       className="px-lg-3  text-decoration-none"
                       to="/register"
                     >
                       Register
-                    </Link>
+                    </NavLink>
                   </div>
                 )}
-              </Nav.Link>
+              </Nav>
             </Nav>
             <Nav>
               <div className="d-none d-md-block">
                 {user?.uid ? (
                   <Image
-                    style={{ height: "40px" }}
+                    style={{ height: "30px" }}
                     roundedCircle
                     src={user.photoURL}
                   ></Image>

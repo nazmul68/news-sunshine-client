@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import News from "../Pages/News/News";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -20,14 +21,22 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/category/:id",
-        element: <Category></Category>,
+        element: (
+          <PrivateRoute>
+            <Category></Category>
+          </PrivateRoute>
+        ),
         loader: async ({ params }) => {
           return fetch(`http://localhost:5000/category/${params.id}`);
         },
       },
       {
         path: "/news/:id",
-        element: <News></News>,
+        element: (
+          <PrivateRoute>
+            <News></News>
+          </PrivateRoute>
+        ),
         loader: async ({ params }) => {
           return fetch(`http://localhost:5000/news/${params.id}`);
         },

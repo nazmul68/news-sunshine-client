@@ -50,7 +50,7 @@ const NewsSummaryCard = ({ news }) => {
             {details.length > 200 ? (
               <p>
                 {details.slice(0, 250) + "..."}
-                <Link to={`/news/${_id}`}>read more</Link>{" "}
+                <Link to={`/news/${_id}`}>read more</Link>
               </p>
             ) : (
               <p>{details}</p>

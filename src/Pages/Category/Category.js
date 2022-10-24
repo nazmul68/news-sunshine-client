@@ -8,7 +8,7 @@ const Category = () => {
     <div>
       <h3 className="text-center">
         This category has{" "}
-        <span className="text-primary">{categoryNews.length}</span> news.
+        <span className="text-primary"> {categoryNews.length} </span> news.
       </h3>
       {categoryNews.map((news) => (
         <NewsSummaryCard key={news._id} news={news}></NewsSummaryCard>
